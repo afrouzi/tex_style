@@ -15,8 +15,6 @@
 \usepackage{array}
 \usepackage{multirow} 
 \usepackage{booktabs}
-    % default table size --- this creates an issue for author font size
-    \newcommand{\mytablefontsize}{\normalfont} % or \small or \scriptsize --- this also changes the author font size ...
     \AtBeginEnvironment{table}{\mytablefontsize}
 
 % support for placement of figures/tables: https://ctan.org/pkg/float
@@ -108,6 +106,7 @@
     \crefname{cor}{Corollary}{Corollaries}
     \crefname{defn}{Definition}{Definitions}
     \crefname{prop}{Proposition}{Propositions}
+    \crefname{remark}{Remark}{Remarks}
 
 % for appendix: https://ctan.org/pkg/appendix, https://ctan.org/pkg/apptools
 \usepackage{appendix} % \appendix
@@ -141,7 +140,7 @@
 % for plots and figures:
 \usepackage{tikz}
 \usepackage{pgfplots}
-    \pgfplotsset{compat=1.13}
+    \pgfplotsset{compat=1.17}
 
 % could be used to redefine url styles: https://ctan.org/pkg/url
 \usepackage{url}
@@ -169,7 +168,7 @@
     \appto{\footnotesize}{\zerodisplayskips}
 
 % where to compile eps figures to pdf
-\usepackage[outdir=.]{epstopdf}
+\usepackage[outdir=./build]{epstopdf}
 
 % for margins (see declare options below)
 \usepackage{geometry}
@@ -177,8 +176,6 @@
 
 % options for \includegraphics: https://ctan.org/pkg/graphicx
 \usepackage{graphicx}
-    % set scaling of figures (by default it is 1)
-    \newcommand{\myfigurescale}{1} % or < 1
     \setkeys{Gin}{width=\myfigurescale\textwidth}
 
 % \usepackage{xcolor}
