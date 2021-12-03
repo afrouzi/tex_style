@@ -15,6 +15,7 @@
 \usepackage{array}
 \usepackage{multirow} 
 \usepackage{booktabs}
+    \newcommand\mytablefontsize{\normalsize}
     \AtBeginEnvironment{table}{\mytablefontsize}
 
 % support for placement of figures/tables: https://ctan.org/pkg/float
@@ -107,6 +108,7 @@
     \crefname{defn}{Definition}{Definitions}
     \crefname{prop}{Proposition}{Propositions}
     \crefname{remark}{Remark}{Remarks}
+    \crefname{comment}{Comment}{Comments}
 
 % for appendix: https://ctan.org/pkg/appendix, https://ctan.org/pkg/apptools
 \usepackage{appendix} % \appendix
@@ -151,6 +153,9 @@
     \titlespacing*{\subsection}{0pt}{1.25ex plus 0.8ex minus .2ex}{1ex plus 0.5ex minus .2ex}
     \titlespacing*{\subsubsection}{0pt}{1ex plus 0.6ex minus .2ex}{1ex plus 0.5ex minus .2ex}
     \titlespacing*{\paragraph}{0pt}{0.6ex plus .2ex minus .2ex}{0.6ex plus 0.2ex minus .2ex}
+    \titleformat*{\section}{\large\bfseries}
+    \titleformat*{\subsection}{\normalsize\bfseries}
+    \titleformat*{\paragraph}{\normalsize\bfseries}
 
 % no space between items in lists (itemize, enumerate)
 \usepackage{enumitem}
@@ -176,6 +181,7 @@
 
 % options for \includegraphics: https://ctan.org/pkg/graphicx
 \usepackage{graphicx}
+    \newcommand\myfigurescale{1}
     \setkeys{Gin}{width=\myfigurescale\textwidth}
 
 % \usepackage{xcolor}
@@ -246,6 +252,12 @@
     \newcommand{#2}[1]{\todo[color=#3!30, size=\scriptsize]
      {\begin{spacing}{1}\textbf{#1:} \\ \texttt{##1}\end{spacing}}}
 }
+
+%% for replying to comments
+\newcounter{comment}
+\setcounter{comment}{0}
+\newcommand{\comment}{\medskip \refstepcounter{comment} \paragraph{Comment~\thecomment.}}
+\renewcommand{\quote}[1]{\itshape``#1''\normalfont}
 
 %% OTHER COMMANDS
 \renewcommand{\d}{\mathrm{d}}
