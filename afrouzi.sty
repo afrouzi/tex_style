@@ -148,30 +148,9 @@
 % could be used to redefine url styles: https://ctan.org/pkg/url
 \usepackage{url}
 
-% space before and after section/subsection/paragraph titles 
-\usepackage{titlesec}
-    \titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1.5ex plus 1ex minus .2ex}
-    \titlespacing*{\subsection}{0pt}{1.25ex plus 0.8ex minus .2ex}{1ex plus 0.5ex minus .2ex}
-    \titlespacing*{\subsubsection}{0pt}{1ex plus 0.6ex minus .2ex}{1ex plus 0.5ex minus .2ex}
-    \titlespacing*{\paragraph}{0pt}{0.6ex plus .2ex minus .2ex}{0.6ex plus 0.2ex minus .2ex}
-    \titleformat*{\section}{\large\bfseries}
-    \titleformat*{\subsection}{\normalsize\bfseries}
-    \titleformat*{\paragraph}{\normalsize\bfseries}
-
 % no space between items in lists (itemize, enumerate)
 \usepackage{enumitem}
     \setlist{nosep}
-
-% control space before and after equation environments:
-\usepackage{etoolbox}
-    \newcommand{\zerodisplayskips}{%
-      \setlength{\abovedisplayskip}{1ex}%
-      \setlength{\belowdisplayskip}{1ex}%
-      \setlength{\abovedisplayshortskip}{1ex}%
-      \setlength{\belowdisplayshortskip}{1ex}}
-    \appto{\normalsize}{\zerodisplayskips}
-    \appto{\small}{\zerodisplayskips}
-    \appto{\footnotesize}{\zerodisplayskips}
 
 % where to compile eps figures to pdf
 \usepackage[outdir=./build/]{epstopdf}
@@ -198,6 +177,10 @@
 \newif\ifbuildtitle
 \buildtitletrue
 \DeclareOption{note}{\buildtitlefalse}
+% if for saving space 
+\newif\ifcompact
+\compactfalse 
+\DeclareOption{compact}{\compacttrue}
 % if for comments
 \newif\ifcomments
 \commentsfalse
@@ -237,6 +220,31 @@
 }
 \fi
 
+%%COMPACT FOR SAVING SPACE
+% control space before and after equation environments:
+\usepackage{etoolbox}
+% space before and after section/subsection/paragraph titles 
+\usepackage{titlesec}
+\ifcompact
+    \newcommand{\zerodisplayskips}{%
+    \setlength{\abovedisplayskip}{1ex}%
+    \setlength{\belowdisplayskip}{1ex}%
+    \setlength{\abovedisplayshortskip}{1ex}%
+    \setlength{\belowdisplayshortskip}{1ex}}
+    \appto{\normalsize}{\zerodisplayskips}
+    \appto{\small}{\zerodisplayskips}
+    \appto{\footnotesize}{\zerodisplayskips}
+    \titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1.5ex plus 1ex minus .2ex}
+    \titlespacing*{\subsection}{0pt}{1.25ex plus 0.8ex minus .2ex}{1ex plus 0.5ex minus .2ex}
+    \titlespacing*{\subsubsection}{0pt}{1ex plus 0.6ex minus .2ex}{1ex plus 0.5ex minus .2ex}
+    \titlespacing*{\paragraph}{0pt}{0.6ex plus .2ex minus .2ex}{0.6ex plus 0.2ex minus .2ex}
+    \titleformat*{\section}{\large\bfseries}
+    \titleformat*{\subsection}{\normalsize\bfseries}
+    \titleformat*{\paragraph}{\normalsize\bfseries}
+\fi
+
+
+
 %%EXPAND THE MARGIN FOR COMMENTS
 \ifcomments
   \paperwidth=\dimexpr \paperwidth + 3cm\relax
@@ -262,5 +270,5 @@
 
 %% OTHER COMMANDS
 \renewcommand{\d}{\mathrm{d}}
-\newcommand{\eqlabel}[2]{\underset{\text{#1}}{\underbrace{#2}}}
+\newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
 \newcommand{\E}{\mathbb{E}}
