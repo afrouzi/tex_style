@@ -83,10 +83,10 @@
 
 % for bibliography
 \usepackage[longnamesfirst,authoryear]{natbib}
-	\setlength{\bibsep}{2pt plus 0.3ex}
+	\setlength{\bibsep}{1.5pt plus 0.3ex}
     \newcommand{\printreferences}{
         \begin{singlespace}
-        {\small 
+        {\footnotesize 
         \bibliographystyle{\mybibstyle}
         \bibliography{\mybibfile}}
         \end{singlespace}
@@ -149,7 +149,7 @@
 \usepackage{url}
 
 % no space between items in lists (itemize, enumerate)
-\usepackage{enumitem}
+\usepackage[inline]{enumitem}
     \setlist{nosep}
 
 % where to compile eps figures to pdf
