@@ -3,7 +3,7 @@
 \usepackage[latin9]{luainputenc}
 
 % Font package: fourier by default which uses Adobe Utopia
-\usepackage{fourier}
+\usepackage{times}
 
 % https://ctan.org/pkg/microtype?lang=en
 \usepackage{microtype}
@@ -64,9 +64,9 @@
     \declaretheorem[style=thmstyle,name=Theorem]{thm}
     \declaretheorem[style=thmstyle,name=Proposition,sibling=thm]{prop}
     \declaretheorem[style=thmstyle,name=Remark]{remark}
-    \declaretheorem[style=lemstyle,name=Lemma,sibling=thm]{lem}
-    \declaretheorem[style=lemstyle,name=Corollary,sibling=thm]{cor}
-    \declaretheorem[style=lemstyle,name=Definition]{defn}
+    \declaretheorem[style=thmstyle,name=Lemma]{lem}
+    \declaretheorem[style=thmstyle,name=Corollary]{cor}
+    \declaretheorem[style=thmstyle,name=Definition]{defn}
     \declaretheorem[style=lemstyle,name=Definition,numbered=no]{defn*}
     \declaretheorem[style=lemstyle,name=Algorithm]{algorithm}
     \renewcommand{\qedsymbol}{\rule{1.2ex}{1.2ex}}
@@ -160,7 +160,7 @@
 
 % for margins (see declare options below)
 \usepackage{geometry}
-    \geometry{tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    \geometry{tmargin=0.8in,bmargin=0.8in,lmargin=0.8in,rmargin=0.8in}
 
 % options for \includegraphics: https://ctan.org/pkg/graphicx
 \usepackage{graphicx}
@@ -171,9 +171,9 @@
 
 %% PRETTY COLORS
 \definecolor{darkred}{HTML}{8f1909}
-\definecolor{darkgreen}{HTML}{38564f}
 \definecolor{darkblue}{HTML}{1c147a}
 \definecolor{darkmagenta}{HTML}{8f2247}
+\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.0}
 
 %% DECLARE OPTIONS
 % if for building the title page 
@@ -244,6 +244,7 @@
     \titleformat*{\section}{\large\bfseries}
     \titleformat*{\subsection}{\normalsize\bfseries}
     \titleformat*{\paragraph}{\normalsize\bfseries}
+    % \AtBeginEnvironment{align}{\textstyle}
 \fi
 
 
