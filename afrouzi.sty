@@ -62,11 +62,12 @@
 
     % envs: thm, prop, remark, lem, cor, defn, defn*, algorithm, proof
     \declaretheorem[style=thmstyle,name=Theorem]{thm}
-    \declaretheorem[style=thmstyle,name=Proposition,sibling=thm]{prop}
+    \declaretheorem[style=thmstyle,name=Proposition]{prop}
     \declaretheorem[style=thmstyle,name=Remark]{remark}
-    \declaretheorem[style=thmstyle,name=Lemma]{lem}
-    \declaretheorem[style=thmstyle,name=Corollary]{cor}
-    \declaretheorem[style=thmstyle,name=Definition]{defn}
+    \declaretheorem[style=thmstyle,name=Lemma,sibling=prop]{lem}
+    \declaretheorem[style=thmstyle,name=Corollary,sibling=prop]{cor}
+    \declaretheorem[style=thmstyle,name=Definition,sibling=prop]{defn}
+    \declaretheorem[style=thmstyle,name=Assumption]{asm}
     \declaretheorem[style=lemstyle,name=Definition,numbered=no]{defn*}
     \declaretheorem[style=lemstyle,name=Algorithm]{algorithm}
     \renewcommand{\qedsymbol}{\rule{1.2ex}{1.2ex}}
@@ -108,6 +109,7 @@
     \crefname{thm}{Theorem}{Theorems}
     \crefname{lem}{Lemma}{Lemmas}
     \crefname{cor}{Corollary}{Corollaries}
+    \crefname{asm}{Assumption}{Assumptions}
     \crefname{defn}{Definition}{Definitions}
     \crefname{prop}{Proposition}{Propositions}
     \crefname{remark}{Remark}{Remarks}
