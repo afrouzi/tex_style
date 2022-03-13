@@ -1,4 +1,4 @@
-% import char packages 
+% import char packages
 \usepackage[T1]{fontenc}
 \usepackage[latin9]{luainputenc}
 
@@ -13,10 +13,10 @@
 
 % for tables: https://ctan.org/pkg/array?lang=en, https://ctan.org/pkg/multirow, https://ctan.org/pkg/booktabs
 \usepackage{array}
-\usepackage{multirow} 
+\usepackage{multirow}
 \usepackage{booktabs}
     \newcommand\mytablefontsize{\normalsize}
-    \AtBeginEnvironment{table}{\mytablefontsize}
+    % \AtBeginEnvironment{table}{\mytablefontsize}
 
 % support for placement of figures/tables: https://ctan.org/pkg/float
 \usepackage{float}
@@ -26,23 +26,23 @@
 
 % for landscape figures/tables https://ctan.org/pkg/lscape
 \usepackage{lscape}
-% rotate landscape pages in the pdf 
+% rotate landscape pages in the pdf
 \usepackage{pdflscape}
 
-% nice fractions 
+% nice fractions
 \usepackage{nicefrac}
 
 % for math environments and operators: https://ctan.org/pkg/amsmath
 % envs: equation, align, gather, multiline, alignat, flalign, split
 \usepackage{amsmath}
     % allow for page breaks in the middle of equation blocks
-    \allowdisplaybreaks[1] 
+    \allowdisplaybreaks[1]
 
 % bold greek letter: e.g., \bm{\delta}
 \usepackage{bm}
 
 % for theorems: https://ctan.org/pkg/amsthm, https://ctan.org/pkg/thmtools
-\usepackage{amsthm} 
+\usepackage{amsthm}
 \usepackage{thmtools}
     % theorem/proposition style - colored with blue
     \declaretheoremstyle[
@@ -64,9 +64,9 @@
     \declaretheorem[style=thmstyle,name=Theorem]{thm}
     \declaretheorem[style=thmstyle,name=Proposition]{prop}
     \declaretheorem[style=thmstyle,name=Remark]{remark}
-    \declaretheorem[style=thmstyle,name=Lemma,sibling=prop]{lem}
-    \declaretheorem[style=thmstyle,name=Corollary,sibling=prop]{cor}
-    \declaretheorem[style=thmstyle,name=Definition,sibling=prop]{defn}
+    \declaretheorem[style=thmstyle,name=Lemma]{lem}
+    \declaretheorem[style=thmstyle,name=Corollary]{cor}
+    \declaretheorem[style=thmstyle,name=Definition]{defn}
     \declaretheorem[style=thmstyle,name=Assumption]{asm}
     \declaretheorem[style=lemstyle,name=Definition,numbered=no]{defn*}
     \declaretheorem[style=lemstyle,name=Algorithm]{algorithm}
@@ -90,7 +90,7 @@
 	\setlength{\bibsep}{1.5pt plus 0.3ex}
     \newcommand{\printreferences}{
         \begin{singlespace}
-        {\footnotesize 
+        {\footnotesize
         \bibliographystyle{\mybibstyle}
         \bibliography{\mybibfile}}
         \end{singlespace}
@@ -140,15 +140,16 @@
 
 % for captions:
 \usepackage{caption}
-    \captionsetup{belowskip=2pt,aboveskip=2pt}
+    \captionsetup{belowskip=5pt,aboveskip=5pt}
     % for table and figure notes:
-    \newcommand\notes[1]{\captionsetup{belowskip=0pt,aboveskip=2pt,font={footnotesize,stretch=1},justification=justified}\caption*{\emph{Notes:} #1}}
+    \newcommand\notes[1]{\captionsetup{belowskip=5pt,aboveskip=5pt,font={footnotesize,stretch=1},justification=justified}\caption*{\emph{Notes:} #1}}
 \usepackage{subcaption}
 
 % for plots and figures:
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \usepackage{pgfplots}
-    \pgfplotsset{compat=1.17}
+    \pgfplotsset{compat=1.16}
 
 % could be used to redefine url styles: https://ctan.org/pkg/url
 \usepackage{url}
@@ -162,7 +163,7 @@
 
 % for margins (see declare options below)
 \usepackage{geometry}
-    \geometry{tmargin=0.8in,bmargin=0.8in,lmargin=0.8in,rmargin=0.8in}
+    \geometry{tmargin=0.9in,bmargin=0.9in,lmargin=0.9in,rmargin=0.9in}
 
 % options for \includegraphics: https://ctan.org/pkg/graphicx
 \usepackage{graphicx}
@@ -175,16 +176,18 @@
 \definecolor{darkred}{HTML}{8f1909}
 \definecolor{darkblue}{HTML}{1c147a}
 \definecolor{darkmagenta}{HTML}{8f2247}
+\definecolor{lightblue}{HTML}{B5D3E7}
+\definecolor{lightred}{HTML}{FFCCCB}
 \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.0}
 
 %% DECLARE OPTIONS
-% if for building the title page 
+% if for building the title page
 \newif\ifbuildtitle
 \buildtitletrue
 \DeclareOption{note}{\buildtitlefalse}
-% if for saving space 
+% if for saving space
 \newif\ifcompact
-\compactfalse 
+\compactfalse
 \DeclareOption{compact}{\compacttrue}
 % if for comments
 \newif\ifcomments
@@ -200,7 +203,7 @@
     % ROMAN NUMBERS FOR QJE
     \renewcommand{\thetable}{\Roman{table}}
     \renewcommand{\thefigure}{\Roman{figure}}
-    }        
+    }
 \ProcessOptions\relax
 
 %% TITLE/AUTHORS/AFFILIATIONS
@@ -208,7 +211,7 @@
 \ifbuildtitle
 \title{\mytitle\thanks{\mytitlefootnote}}
 \author{\myauthors}
-\date{\normalsize{\mydate}} 
+\date{\normalsize{\mydate}}
 \AtBeginDocument{
     \maketitle
     \thispagestyle{empty}
@@ -228,7 +231,7 @@
 %%COMPACT FOR SAVING SPACE
 % control space before and after equation environments:
 \usepackage{etoolbox}
-% space before and after section/subsection/paragraph titles 
+% space before and after section/subsection/paragraph titles
 \usepackage{titlesec}
 \ifcompact
     \newcommand{\zerodisplayskips}{%
@@ -260,7 +263,7 @@
   \usepackage{todonotes}
 \else
   \usepackage[disable]{todonotes}
-\fi 
+\fi
 
 % define comment author: \commentauthor{Author}{command}{color}
 \newcommand{\commentauthor}[3]{
