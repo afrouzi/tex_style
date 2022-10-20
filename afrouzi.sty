@@ -186,6 +186,14 @@
 \newif\ifbuildtitle
 \buildtitletrue
 \DeclareOption{note}{\buildtitlefalse}
+
+\DeclareOption{response}{\buildtitlefalse
+        %% for replying to comments
+    \newcounter{comment}
+    \setcounter{comment}{0}
+    \newenvironment{comment}{\medskip \refstepcounter{comment} \paragraph{Comment~\thecomment.} \emph}{}
+    \newenvironment{response}{\color{darkblue} \paragraph{Response.}}{}
+}
 % if for saving space
 \newif\ifcompact
 \compactfalse
@@ -206,7 +214,6 @@
     \renewcommand{\thefigure}{\Roman{figure}}
     }
 \ProcessOptions\relax
-
 %% TITLE/AUTHORS/AFFILIATIONS
 %% MAKE TITLE
 \ifbuildtitle
@@ -271,12 +278,6 @@
     \newcommand{#2}[1]{\todo[color=#3!30, size=\scriptsize]
      {\begin{spacing}{1}\textbf{#1:} \\ \texttt{##1}\end{spacing}}}
 }
-
-%% for replying to comments
-\newcounter{comment}
-\setcounter{comment}{0}
-\newcommand{\comment}{\medskip \refstepcounter{comment} \paragraph{Comment~\thecomment.}}
-\renewcommand{\quote}[1]{\itshape``#1''\normalfont}
 
 %% OTHER COMMANDS
 \renewcommand{\d}{\mathrm{d}}
