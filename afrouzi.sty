@@ -200,16 +200,6 @@
     \setlength{\parskip}{0.5\baselineskip}
 }
 
-\DeclareOption{response}{\buildtitlefalse
-        %% for replying to comments
-    \newcounter{comment}
-    \setcounter{comment}{0}
-    \newenvironment{comment}{\refstepcounter{comment} \paragraph{Comment~\thecomment.}}{}
-    \newenvironment{response}{\medskip \color{darkblue}\paragraph{\textnormal{\textbf{Response.}}}}{\medskip}
-    \newcommand{\nl}{\medskip \\}
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{\baselineskip}
-}
 % if for saving space
 \newif\ifcompact
 \compactfalse
