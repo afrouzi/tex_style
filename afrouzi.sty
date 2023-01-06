@@ -187,6 +187,19 @@
 \buildtitletrue
 \DeclareOption{note}{\buildtitlefalse}
 
+% option for writing response letters to referee reorts 
+% adds two commnads: \comment{quote referee comment here} and \response{write your response here}
+\DeclareOption{response}{\buildtitlefalse
+        %% for replying to comments
+    \newcounter{comment}
+    \setcounter{comment}{0}
+    \newenvironment{comment}{\refstepcounter{comment} \paragraph{Comment~\thecomment.}}{}
+    \newenvironment{response}{\color{darkblue}\paragraph{\textnormal{\textbf{Response.}}}}{}
+    \newcommand{\nl}{\medskip \\}
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{0.5\baselineskip}
+}
+
 \DeclareOption{response}{\buildtitlefalse
         %% for replying to comments
     \newcounter{comment}
@@ -283,6 +296,6 @@
 }
 
 %% OTHER COMMANDS
-\renewcommand{\d}{\mathrm{d}}
+\renewcommand{\d}{\mathrm{d}}				
 \newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
 \newcommand{\E}{\mathbb{E}}
