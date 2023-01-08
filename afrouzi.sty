@@ -3,7 +3,7 @@
 \usepackage[latin9]{luainputenc}
 
 % Font package: fourier by default which uses Adobe Utopia
-\usepackage{fourier}
+\usepackage{fouriernc}
 
 % https://ctan.org/pkg/microtype?lang=en
 \usepackage{microtype}
@@ -285,7 +285,15 @@
      {\begin{spacing}{1}\textbf{#1:} \\ \texttt{##1}\end{spacing}}}
 }
 
-%% OTHER COMMANDS
+%% OTHER COMMANDS AND ENVIRONMENTS
 \renewcommand{\d}{\mathrm{d}}				
 \newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
 \newcommand{\E}{\mathbb{E}}
+
+% align and align* with \textstyle
+\newenvironment{talign}
+ {\let\displaystyle\textstyle\align}
+ {\endalign}
+\newenvironment{talign*}
+ {\let\displaystyle\textstyle\csname align*\endcsname}
+ {\endalign}
