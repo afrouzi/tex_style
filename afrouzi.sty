@@ -38,6 +38,7 @@
 \usepackage{amsmath}
     % allow for page breaks in the middle of equation blocks
     \allowdisplaybreaks[1]
+    \DeclareMathSizes{12}{11.75}{8.5}{7}
 
 % bold greek letter: e.g., \bm{\delta}
 \usepackage{bm}
@@ -60,6 +61,13 @@
     notefont=\mdseries\bfseries, notebraces={(}{)},
     bodyfont=\normalfont\itshape,
     ]{lemstyle}
+
+    \declaretheoremstyle[
+    spaceabove=2pt, spacebelow=2pt,
+    headfont=\color{textmagenta}\normalfont\bfseries,
+    notefont=\mdseries\bfseries, notebraces={(}{)},
+    bodyfont=\color{textmagenta}\normalfont
+    ]{remstyle}
 
     % envs: thm, prop, remark, lem, cor, defn, defn*, algorithm, proof
     \declaretheorem[style=thmstyle,name=Theorem]{thm}
@@ -179,7 +187,8 @@
 \definecolor{darkmagenta}{HTML}{8f2247}
 \definecolor{lightblue}{HTML}{B5D3E7}
 \definecolor{lightred}{HTML}{FFCCCB}
-\definecolor{darkgreen}{rgb}{0.0, 0.2, 0.0}
+\definecolor{darkgreen}{rgb}{0, 0.25, 0.125}
+\definecolor{textmagenta}{rgb}{0.65, 0.0, 0.65}
 
 %% DECLARE OPTIONS
 % if for building the title page
@@ -249,21 +258,24 @@
 \usepackage{titlesec}
 \ifcompact
     \newcommand{\zerodisplayskips}{%
-    \setlength{\abovedisplayskip}{1ex}%
-    \setlength{\belowdisplayskip}{1ex}%
-    \setlength{\abovedisplayshortskip}{1ex}%
-    \setlength{\belowdisplayshortskip}{1ex}}
+    \setlength{\abovedisplayskip}{0.5ex}%
+    \setlength{\belowdisplayskip}{0.5ex}%
+    \setlength{\abovedisplayshortskip}{0.5ex}%
+    \setlength{\belowdisplayshortskip}{0.5ex}}
     \appto{\normalsize}{\zerodisplayskips}
     \appto{\small}{\zerodisplayskips}
     \appto{\footnotesize}{\zerodisplayskips}
-    \titlespacing*{\section}{0pt}{1.5ex plus 1ex minus .2ex}{1.5ex plus 1ex minus .2ex}
-    \titlespacing*{\subsection}{0pt}{1.25ex plus 0.8ex minus .2ex}{1ex plus 0.5ex minus .2ex}
-    \titlespacing*{\subsubsection}{0pt}{1ex plus 0.6ex minus .2ex}{1ex plus 0.5ex minus .2ex}
-    \titlespacing*{\paragraph}{0pt}{0.6ex plus .2ex minus .2ex}{0.6ex plus 0.2ex minus .2ex}
-    \titleformat*{\section}{\large\bfseries}
-    \titleformat*{\subsection}{\normalsize\bfseries}
-    \titleformat*{\paragraph}{\normalsize\bfseries}
-    % \AtBeginEnvironment{align}{\textstyle}
+    \titlespacing*{\section}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.6ex minus .2ex}
+    \titlespacing*{\subsection}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
+    \titlespacing*{\subsubsection}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
+    \titlespacing*{\paragraph}{0pt}{0.5ex plus .2ex minus .2ex}{0.5ex plus 0.2ex minus .2ex}
+    \titlespacing*{\subparagraph}{20pt}{0.5ex plus .2ex minus .2ex}{0.5ex plus 0.2ex minus .2ex}
+    \renewcommand\large{\@setfontsize\large{12}{13}}
+    \renewcommand{\thesection}{\Roman{section}}
+    \titleformat{\section}{\large\center\sc\bfseries}{\thesection.}{5pt}{}
+    \titleformat{\subsection}[runin]{\normalsize\bfseries\color{darkgreen}\slshape}{\thesubsection.}{5pt}{}[.]
+    \titleformat*{\paragraph}{\normalsize\itshape\color{darkgreen}}
+    \titleformat*{\subparagraph}{\normalsize\itshape\color{darkgreen}}
 \fi
 
 
@@ -289,6 +301,7 @@
 \renewcommand{\d}{\mathrm{d}}				
 \newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
 \newcommand{\E}{\mathbb{E}}
+\newcommand{\mcolor}[1]{{\color{textmagenta} #1}}
 
 % align and align* with \textstyle
 \newenvironment{talign}
