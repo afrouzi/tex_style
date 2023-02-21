@@ -38,7 +38,6 @@
 \usepackage{amsmath}
     % allow for page breaks in the middle of equation blocks
     \allowdisplaybreaks[1]
-    \DeclareMathSizes{12}{11.75}{8.5}{7}
 
 % bold greek letter: e.g., \bm{\delta}
 \usepackage{bm}
@@ -49,8 +48,8 @@
     % theorem/proposition style - colored with blue
     \declaretheoremstyle[
     spaceabove=2pt, spacebelow=2pt,
-    headfont=\color{darkblue}\normalfont\bfseries,
-    notefont=\mdseries\bfseries, notebraces={(}{)},
+    headfont=\color{darkred}\normalfont\bfseries,
+    notefont=\color{darkred}\mdseries, notebraces={(}{)},
     bodyfont=\color{darkblue}\normalfont
     ]{thmstyle}
 
@@ -182,12 +181,12 @@
 % \usepackage{xcolor}
 
 %% PRETTY COLORS
-\definecolor{darkred}{HTML}{8f1909}
+\definecolor{darkred}{rgb}{0.4, 0, 0.15}
 \definecolor{darkblue}{HTML}{1c147a}
 \definecolor{darkmagenta}{HTML}{8f2247}
 \definecolor{lightblue}{HTML}{B5D3E7}
 \definecolor{lightred}{HTML}{FFCCCB}
-\definecolor{darkgreen}{rgb}{0, 0.25, 0.125}
+\definecolor{darkgreen}{rgb}{0.1, 0.25, 0.1}
 \definecolor{textmagenta}{rgb}{0.65, 0.0, 0.65}
 
 %% DECLARE OPTIONS
@@ -257,6 +256,7 @@
 % space before and after section/subsection/paragraph titles
 \usepackage{titlesec}
 \ifcompact
+    \DeclareMathSizes{12}{11.75}{8.5}{7}
     \newcommand{\zerodisplayskips}{%
     \setlength{\abovedisplayskip}{0.5ex}%
     \setlength{\belowdisplayskip}{0.5ex}%
@@ -265,15 +265,16 @@
     \appto{\normalsize}{\zerodisplayskips}
     \appto{\small}{\zerodisplayskips}
     \appto{\footnotesize}{\zerodisplayskips}
-    \titlespacing*{\section}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.6ex minus .2ex}
+    \titlespacing*{\section}{0pt}{2ex plus 0.6ex minus .2ex}{1ex plus 0.6ex minus .2ex}
     \titlespacing*{\subsection}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
     \titlespacing*{\subsubsection}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
     \titlespacing*{\paragraph}{0pt}{0.5ex plus .2ex minus .2ex}{0.5ex plus 0.2ex minus .2ex}
     \titlespacing*{\subparagraph}{20pt}{0.5ex plus .2ex minus .2ex}{0.5ex plus 0.2ex minus .2ex}
-    \renewcommand\large{\@setfontsize\large{12}{13}}
-    \renewcommand{\thesection}{\Roman{section}}
-    \titleformat{\section}{\large\center\sc\bfseries}{\thesection.}{5pt}{}
-    \titleformat{\subsection}[runin]{\normalsize\bfseries\color{darkgreen}\slshape}{\thesubsection.}{5pt}{}[.]
+    \let\newlarge\large
+    \renewcommand\newlarge{\@setfontsize\large{15}{15}}
+    \titleformat{\section}{\newlarge\bfseries\color{darkgreen}}{\thesection}{15pt}{}
+    \titleformat{\subsection}[runin]{\normalsize\bfseries\color{darkgreen}}{\thesubsection.}{5pt}{}[.]
+    \titleformat{\subsubsection}[runin]{\normalsize\color{darkgreen}\itshape}{\thesubsubsection.}{5pt}{}[.]
     \titleformat*{\paragraph}{\normalsize\itshape\color{darkgreen}}
     \titleformat*{\subparagraph}{\normalsize\itshape\color{darkgreen}}
 \fi
