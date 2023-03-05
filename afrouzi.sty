@@ -39,6 +39,8 @@
     % allow for page breaks in the middle of equation blocks
     \allowdisplaybreaks[1]
 
+\usepackage{mathtools}
+
 % bold greek letter: e.g., \bm{\delta}
 \usepackage{bm}
 
@@ -181,7 +183,7 @@
 % \usepackage{xcolor}
 
 %% PRETTY COLORS
-\definecolor{darkred}{rgb}{0.4, 0, 0.15}
+\definecolor{darkred}{rgb}{0.5, 0, 0}
 \definecolor{darkblue}{HTML}{1c147a}
 \definecolor{darkmagenta}{HTML}{8f2247}
 \definecolor{lightblue}{HTML}{B5D3E7}
@@ -303,6 +305,8 @@
 \newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\mcolor}[1]{{\color{textmagenta} #1}}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt,color=darkred] (char) {\scriptsize #1};}}
 
 % align and align* with \textstyle
 \newenvironment{talign}
