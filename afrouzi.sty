@@ -3,7 +3,7 @@
 \usepackage[latin9]{luainputenc}
 
 % Font package: fourier by default which uses Adobe Utopia
-\usepackage{fouriernc}
+% \usepackage{fouriernc}
 
 % https://ctan.org/pkg/microtype?lang=en
 \usepackage{microtype}
@@ -111,11 +111,14 @@
 
 % to have colored hyperlinks
 \usepackage{hyperref}
-    \hypersetup{colorlinks=true,linkcolor=darkred,citecolor=darkred,urlcolor=darkmagenta}
+    \newcommand{\linkcolor}{darkred}
+    \newcommand{\citecolor}{darkblue}
+    \newcommand{\urlcolor}{textmagenta}
+    \hypersetup{colorlinks=true,linkcolor=\linkcolor,citecolor=\citecolor,urlcolor=\urlcolor}
     \newcommand{\email}[1]{\href{mailto:#1}{#1}}
 
 % clever references
-\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage[capitalise,noabbrev,nameinlink]{cleveref}
     \crefname{thm}{Theorem}{Theorems}
     \crefname{lem}{Lemma}{Lemmas}
     \crefname{cor}{Corollary}{Corollaries}
@@ -183,13 +186,13 @@
 % \usepackage{xcolor}
 
 %% PRETTY COLORS
-\definecolor{darkred}{rgb}{0.5, 0, 0}
-\definecolor{darkblue}{HTML}{1c147a}
+\definecolor{darkred}{rgb}{0.75, 0, 0}
+\definecolor{darkblue}{rgb}{0, 0, 0.95}
 \definecolor{darkmagenta}{HTML}{8f2247}
 \definecolor{lightblue}{HTML}{B5D3E7}
 \definecolor{lightred}{HTML}{FFCCCB}
 \definecolor{darkgreen}{rgb}{0.1, 0.25, 0.1}
-\definecolor{textmagenta}{rgb}{0.65, 0.0, 0.65}
+\definecolor{textmagenta}{rgb}{0.75, 0.0, 0.75}
 
 %% DECLARE OPTIONS
 % if for building the title page
@@ -218,12 +221,19 @@
 \newif\ifcomments
 \commentsfalse
 \DeclareOption{comments}{\commentstrue}
+% if for no abstract
+\newif\ifnoabstract
+\noabstractfalse
+\DeclareOption{noabstract}{\noabstracttrue}
+
 \DeclareOption{ecma}{
     \geometry{tmargin=1.5in,bmargin=1.5in,lmargin=1.5in,rmargin=1.5in}
     }
+
 \DeclareOption{aer}{
     \geometry{tmargin=1.25in,bmargin=1.25in,lmargin=1.25in,rmargin=1.25in}
     }
+
 \DeclareOption{qje}{
     % ROMAN NUMBERS FOR QJE
     \renewcommand{\thetable}{\Roman{table}}
@@ -236,20 +246,27 @@
 \title{\mytitle\thanks{\mytitlefootnote}}
 \author{\myauthors}
 \date{\normalsize{\mydate}}
-\AtBeginDocument{
-    \maketitle
-    \thispagestyle{empty}
-    \begin{abstract}
-        \begin{singlespace}
-    \myabstract
-    \vspace{\baselineskip} \\
-    \noindent \emph{JEL Codes:} \myjelcodes \\
-    \noindent \emph{Key Words:} \mykeywords
-        \end{singlespace}
-    \end{abstract}
-    \newpage{}
-    \pagenumbering{arabic}
-}
+    \ifnoabstract
+    \AtBeginDocument{
+        \maketitle
+        \pagenumbering{arabic}
+    }
+    \else
+    \AtBeginDocument{
+        \maketitle
+        \thispagestyle{empty}
+        \begin{abstract}
+            \begin{singlespace}
+        \myabstract
+        \vspace{\baselineskip} \\
+        \noindent \emph{JEL Codes:} \myjelcodes \\
+        \noindent \emph{Key Words:} \mykeywords
+            \end{singlespace}
+        \end{abstract}
+        \newpage{}
+        \pagenumbering{arabic}
+    }
+    \fi
 \fi
 
 %%COMPACT FOR SAVING SPACE
