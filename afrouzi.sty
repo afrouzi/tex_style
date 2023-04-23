@@ -3,7 +3,7 @@
 \usepackage[latin9]{luainputenc}
 
 % Font package: fourier by default which uses Adobe Utopia
-\usepackage{fouriernc}
+\usepackage{fourier}
 
 % https://ctan.org/pkg/microtype?lang=en
 \usepackage{microtype}
@@ -50,8 +50,8 @@
     % theorem/proposition style - colored with blue
     \declaretheoremstyle[
     spaceabove=2pt, spacebelow=2pt,
-    headfont=\color{darkred}\normalfont\bfseries,
-    notefont=\color{darkred}\mdseries, notebraces={(}{)},
+    headfont=\color{darkblue}\normalfont\bfseries,
+    notefont=\color{textmagenta}\mdseries, notebraces={(}{)},
     bodyfont=\color{darkblue}\normalfont
     ]{thmstyle}
 
@@ -59,27 +59,20 @@
     \declaretheoremstyle[
     spaceabove=2pt, spacebelow=2pt,
     headfont=\normalfont\bfseries,
-    notefont=\mdseries\bfseries, notebraces={(}{)},
+    notefont=\mdseries\bfseries\itshape, notebraces={(}{)},
     bodyfont=\normalfont\itshape,
-    ]{lemstyle}
-
-    \declaretheoremstyle[
-    spaceabove=2pt, spacebelow=2pt,
-    headfont=\color{textmagenta}\normalfont\bfseries,
-    notefont=\mdseries\bfseries, notebraces={(}{)},
-    bodyfont=\color{textmagenta}\normalfont
-    ]{remstyle}
+    ]{thmstyleblk}
 
     % envs: thm, prop, remark, lem, cor, defn, defn*, algorithm, proof
     \declaretheorem[style=thmstyle,name=Theorem]{thm}
     \declaretheorem[style=thmstyle,name=Proposition]{prop}
-    \declaretheorem[style=thmstyle,name=Remark]{remark}
+    \declaretheorem[style=thmstyleblk,name=Remark]{remark}
     \declaretheorem[style=thmstyle,name=Lemma]{lem}
     \declaretheorem[style=thmstyle,name=Corollary]{cor}
     \declaretheorem[style=thmstyle,name=Definition]{defn}
     \declaretheorem[style=thmstyle,name=Assumption]{asm}
-    \declaretheorem[style=lemstyle,name=Definition,numbered=no]{defn*}
-    \declaretheorem[style=lemstyle,name=Algorithm]{algorithm}
+    \declaretheorem[style=thmstyle,name=Definition,numbered=no]{defn*}
+    \declaretheorem[style=thmstyle,name=Algorithm]{algorithm}
     \renewcommand{\qedsymbol}{\rule{1.2ex}{1.2ex}}
     \renewenvironment{proof}[1][\proofname]{\par
         \pushQED{\qed}%
@@ -115,7 +108,7 @@
     \newcommand{\email}[1]{\href{mailto:#1}{#1}}
 
 % clever references
-\usepackage[capitalise,noabbrev]{cleveref}
+\usepackage[capitalise,noabbrev,nameinlink]{cleveref}
     \crefname{thm}{Theorem}{Theorems}
     \crefname{lem}{Lemma}{Lemmas}
     \crefname{cor}{Corollary}{Corollaries}
@@ -183,13 +176,14 @@
 % \usepackage{xcolor}
 
 %% PRETTY COLORS
-\definecolor{darkred}{rgb}{0.5, 0, 0}
-\definecolor{darkblue}{HTML}{1c147a}
+\definecolor{darkred}{rgb}{0.6, 0, 0}
+\definecolor{darkblue}{rgb}{0, 0, 0.6}
+\definecolor{textmagenta}{rgb}{0.6, 0.0, 0.6}
 \definecolor{darkmagenta}{HTML}{8f2247}
 \definecolor{lightblue}{HTML}{B5D3E7}
 \definecolor{lightred}{HTML}{FFCCCB}
 \definecolor{darkgreen}{rgb}{0.1, 0.25, 0.1}
-\definecolor{textmagenta}{rgb}{0.65, 0.0, 0.65}
+
 
 %% DECLARE OPTIONS
 % if for building the title page
@@ -258,27 +252,27 @@
 % space before and after section/subsection/paragraph titles
 \usepackage{titlesec}
 \ifcompact
-    \DeclareMathSizes{12}{11.75}{8.5}{7}
+    % \DeclareMathSizes{12}{11}{8}{7}
     \newcommand{\zerodisplayskips}{%
-    \setlength{\abovedisplayskip}{0.5ex}%
-    \setlength{\belowdisplayskip}{0.5ex}%
-    \setlength{\abovedisplayshortskip}{0.5ex}%
-    \setlength{\belowdisplayshortskip}{0.5ex}}
+    \setlength{\abovedisplayskip}{1ex}%
+    \setlength{\belowdisplayskip}{1ex}%
+    \setlength{\abovedisplayshortskip}{1ex}%
+    \setlength{\belowdisplayshortskip}{1ex}}
     \appto{\normalsize}{\zerodisplayskips}
     \appto{\small}{\zerodisplayskips}
     \appto{\footnotesize}{\zerodisplayskips}
-    \titlespacing*{\section}{0pt}{2ex plus 0.6ex minus .2ex}{1ex plus 0.6ex minus .2ex}
-    \titlespacing*{\subsection}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
+    \titlespacing*{\section}{0pt}{3ex plus 0.6ex minus .2ex}{1ex plus 0.6ex minus .2ex}
+    \titlespacing*{\subsection}{0pt}{1.2ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
     \titlespacing*{\subsubsection}{0pt}{0.8ex plus 0.6ex minus .2ex}{0.8ex plus 0.5ex minus .2ex}
     \titlespacing*{\paragraph}{0pt}{0.5ex plus .2ex minus .2ex}{0.5ex plus 0.2ex minus .2ex}
     \titlespacing*{\subparagraph}{20pt}{0.5ex plus .2ex minus .2ex}{0.5ex plus 0.2ex minus .2ex}
     \let\newlarge\large
     \renewcommand\newlarge{\@setfontsize\large{15}{15}}
-    \titleformat{\section}{\newlarge\bfseries\color{darkgreen}}{\thesection}{15pt}{}
-    \titleformat{\subsection}[runin]{\normalsize\bfseries\color{darkgreen}}{\thesubsection.}{5pt}{}[.]
-    \titleformat{\subsubsection}[runin]{\normalsize\color{darkgreen}\itshape}{\thesubsubsection.}{5pt}{}[.]
-    \titleformat*{\paragraph}{\normalsize\itshape\color{darkgreen}}
-    \titleformat*{\subparagraph}{\normalsize\itshape\color{darkgreen}}
+    \titleformat{\section}{\newlarge\bfseries}{\thesection}{15pt}{}
+    \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{5pt}{}
+    \titleformat{\subsubsection}[runin]{\normalsize\bfseries}{\thesubsubsection.}{5pt}{}[.]
+    \titleformat*{\paragraph}{\normalsize\itshape}
+    \titleformat*{\subparagraph}{\normalsize\itshape}
 \fi
 
 
@@ -300,13 +294,33 @@
      {\begin{spacing}{1}\textbf{#1:} \\ \texttt{##1}\end{spacing}}}
 }
 
-%% OTHER COMMANDS AND ENVIRONMENTS
-\renewcommand{\d}{\mathrm{d}}				
-\newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
+
+
+%%% CUSTOM COMMANDS
+% upright diff operator; e.g., \d j vs dj
+\renewcommand{\d}{\mathrm{d}}
+				
+% mathbf expectation operator
 \newcommand{\E}{\mathbb{E}}
+
+% highlighted math; e.g., \mcolor{...}
 \newcommand{\mcolor}[1]{{\color{textmagenta} #1}}
+
+% circled number for explanation in text 
 \newcommand*\circled[1]{\tikz[baseline=(char.base)]{
             \node[shape=circle,draw,inner sep=2pt,color=darkred] (char) {\scriptsize #1};}}
+
+% partical derivative 
+\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
+
+% total derivative
+\newcommand{\td}[1]{\frac{\d}{\d #1}}
+
+% automatically adjusted parenthesis 
+\newcommand{\pr}[1]{\left( #1 \right)}
+
+% automaticall adjusted brackets
+\newcommand{\br}[1]{\left[ #1 \right]}
 
 % align and align* with \textstyle
 \newenvironment{talign}
@@ -315,3 +329,7 @@
 \newenvironment{talign*}
  {\let\displaystyle\textstyle\csname align*\endcsname}
  {\endalign}
+
+
+ %%% DEPRECATED: don't use. only here for old versions
+ \newcommand{\eqlabel}[2]{\underbrace{#2}_{\text{#1}}}
