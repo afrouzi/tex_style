@@ -24,7 +24,7 @@
 % for line-spacing: \singlespacing, \doublespacing, \onehalfspacing
 \usepackage{setspace}
     \linespread{1.4}
-
+    
 % for landscape figures/tables https://ctan.org/pkg/lscape
 \usepackage{lscape}
 % rotate landscape pages in the pdf
@@ -90,6 +90,7 @@
 
 % for bibliography
 \usepackage[longnamesfirst,authoryear]{natbib}
+    \setcitestyle{citesep={,}}
 	\setlength{\bibsep}{1.5pt plus 0.3ex}
     \newcommand{\printreferences}{
         \begin{singlespace}
@@ -181,7 +182,7 @@
 %% PRETTY COLORS
 \definecolor{darkred}{rgb}{0.6, 0, 0}
 \definecolor{darkblue}{rgb}{0, 0, 0.6}
-\definecolor{textmagenta}{rgb}{0.6, 0.0, 0.6}
+\definecolor{textmagenta}{rgb}{0.55, 0.0, 0.55}
 \definecolor{darkmagenta}{HTML}{8f2247}
 \definecolor{lightblue}{HTML}{B5D3E7}
 \definecolor{lightred}{HTML}{FFCCCB}
@@ -237,6 +238,7 @@
 %% TITLE/AUTHORS/AFFILIATIONS
 %% MAKE TITLE
 \ifbuildtitle
+
 \title{\mytitle\thanks{\mytitlefootnote}}
 \author{\myauthors}
 \date{\normalsize{\mydate}}
@@ -315,6 +317,7 @@
 
 %%% CUSTOM COMMANDS
 % upright diff operator; e.g., \d j vs dj
+\usepackage{xparse}
 \renewcommand{\d}{\mathrm{d}}
 				
 % mathbf expectation operator
@@ -328,7 +331,14 @@
             \node[shape=circle,draw,inner sep=2pt,color=darkred] (char) {\scriptsize #1};}}
 
 % partical derivative 
-\newcommand{\pd}[1]{\frac{\partial}{\partial #1}}
+\NewDocumentCommand{\pd}{m !o}{
+  \IfValueTF{#2}{%
+    \frac{\partial #2}{\partial #1}
+  }{%
+    \frac{\partial}{\partial #1}
+  }%
+}
+\newcommand{\bigo}[2]{\mathcal{O}\pr{\left\|#1\right\|^#2}}
 
 % total derivative
 \newcommand{\td}[1]{\frac{\d}{\d #1}}
