@@ -106,7 +106,7 @@
 % to have colored hyperlinks
 \usepackage{hyperref}
     \newcommand{\linkcolor}{darkred}
-    \newcommand{\citecolor}{darkblue}
+    \newcommand{\citecolor}{darkred}
     \newcommand{\urlcolor}{textmagenta}
     \hypersetup{colorlinks=true,linkcolor=\linkcolor,citecolor=\citecolor,urlcolor=\urlcolor}
     \newcommand{\email}[1]{\href{mailto:#1}{#1}}
@@ -198,10 +198,13 @@
 % option for writing response letters to referee reorts 
 % adds two commnads: \comment{quote referee comment here} and \response{write your response here}
 \DeclareOption{response}{\buildtitlefalse
-        %% for replying to comments
-    \newcounter{comment}
-    \setcounter{comment}{0}
-    \newenvironment{comment}{\refstepcounter{comment} \paragraph{Comment~\thecomment.}}{}
+    \NewDocumentCommand{\comment}{m !o}{
+        \IfValueTF{#2}{%
+            \paragraph{Comment~#1\,\,(#2).}
+        }{%
+            \paragraph*{Comment~#1.}
+        }%
+        }
     \newenvironment{response}{\color{darkblue}\paragraph{\textnormal{\textbf{Response.}}}}{}
     \newcommand{\nl}{\medskip \\}
     \setlength{\parindent}{0pt}
@@ -290,7 +293,7 @@
     \titleformat{\section}{\newlarge\bfseries}{\thesection}{15pt}{}
     \titleformat{\subsection}{\normalsize\bfseries}{\thesubsection.}{5pt}{}
     \titleformat{\subsubsection}[runin]{\normalsize\bfseries}{\thesubsubsection.}{5pt}{}[.]
-    \titleformat*{\paragraph}{\normalsize\itshape}
+    \titleformat*{\paragraph}{\normalsize\bfseries}
     \titleformat*{\subparagraph}{\normalsize\itshape}
 \fi
 
